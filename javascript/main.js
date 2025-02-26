@@ -1,37 +1,44 @@
 function printpdf() {
-  var content = document.getElementById("resume");
+    var content = document.getElementById("resume");
 
-  const allButtons = document.querySelectorAll("#print button");
-  allButtons.forEach((button) => {
-    button.classList.add("none");
-  });
-  let allInputCheckboxes = document.querySelectorAll(".input-checkbox");
-  allInputCheckboxes.forEach((input) => {
-    input.classList.add("none");
-  });
+    const allButtons = document.querySelectorAll("#print button");
+    allButtons.forEach((button) => {
+      button.classList.add("none");
+    });
+    let allInputCheckboxes = document.querySelectorAll(".input-checkbox");
+    allInputCheckboxes.forEach((input) => {
+      input.classList.add("none");
+    });
 
-  allButtons.forEach((button) => {
-    button.classList.remove("none");
-  });
-  allInputCheckboxes.forEach((input) => {
-    input.classList.remove("none");
-  });
+    allButtons.forEach((button) => {
+      button.classList.remove("none");
+    });
+    allInputCheckboxes.forEach((input) => {
+      input.classList.remove("none");
+    });
 
-  const pdfOptions = {
-    margin: 10,
-    filename: "converted_document.pdf",
-    image: { type: "jpeg", quality: 0.98 },
-    html2canvas: { scale: 2 },
-    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-  };
+    const pdfOptions = {
+      margin: [10, 10, 10, 10],  
+      filename: "converted_document.pdf",
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 1.5, logging: true, dpi: 500 },  
+      jsPDF: { 
+        unit: "mm", 
+        format: "a4", 
+        orientation: "portrait",
+        pageHeight: 297, 
+        pageWidth: 210,
+        autoPaging: false 
+      },
+    };
 
-  html2pdf(
-    content,
-    {
-      html2canvas: { scale: 1, logging: true, dpi: 500 },
-    },
-    pdfOptions
-  );
+    html2pdf(
+      content,
+      {
+        html2canvas: { scale: 1.5, logging: true, dpi: 500 }, 
+      },
+      pdfOptions
+    );
 }
 
 function addedu() {
